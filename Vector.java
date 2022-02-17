@@ -58,13 +58,48 @@ public class Vector<E> extends AbstractList<E> implements List<E>, RandomAccess 
   public int indexOf(Object o) {
 	// Returns the index of the first occurrence of the specified element 
 	// in this list, or -1 if this list does not contain the element. 
-  }
-	
+
+  //for loop finds index of the object and returns it. Else returns -1;
+    for(int i =0; i<size;i++){
+      if(data[i]==o){
+        return i;
+      } 
+    }
+    return -1;
+
+    }
+
+
+	@SuppressWarnings("unchecked")
   public int addAfterIf(Object toAdd, Object elementBefore) {
 	// Inserts toAdd after elementBefore, IF elementBefore is located
 	// in the second half of the arraylist. If elementBefore is in the
 	// first half of the arraylist, add toAdd to the end of the arrayList.
 	// Return the index of toAdd
+  
+    for(int i =0; i<size;i++){
+      //if elementbefore is in the arraylist and in the first half, adds toAdd to the end
+      if(data[i]==elementBefore && i<size/2){
+        
+        if (size >= data.length) grow();
+          add((E)(toAdd));
+          return size;
+
+      //if element before in the arraylit and in the second half, adds toAdd after the elementBefore
+      }else if(data[i]==elementBefore && i>=size/2){
+        if (size >= data.length) grow();
+        for (int j =size; j > i+1; j--){
+
+         data[j] = data[j-1];
+        }
+        data[i+1] = toAdd;
+        size++;
+        return i+1;
+
+      }
+    }
+    return -1;
+
   }
   
   public static void main(String[] args) {
@@ -78,6 +113,7 @@ public class Vector<E> extends AbstractList<E> implements List<E>, RandomAccess 
 
 	System.out.println(intlist.indexOf(7));
 	System.out.println(intlist.indexOf("seven"));
+
   }
 }
 

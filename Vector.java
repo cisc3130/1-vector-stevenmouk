@@ -61,7 +61,7 @@ public class Vector<E> extends AbstractList<E> implements List<E>, RandomAccess 
 
   //for loop finds index of the object and returns it. Else returns -1;
     for(int i =0; i<size;i++){
-      if(data[i]==o){
+      if(data[i].equals(o)){
         return i;
       } 
     }
@@ -79,14 +79,14 @@ public class Vector<E> extends AbstractList<E> implements List<E>, RandomAccess 
   
     for(int i =0; i<size;i++){
       //if elementbefore is in the arraylist and in the first half, adds toAdd to the end
-      if(data[i]==elementBefore && i<size/2){
+      if(data[i].equals(elementBefore) && i<size/2){
         
         if (size >= data.length) grow();
           add((E)(toAdd));
           return size;
 
       //if element before in the arraylit and in the second half, adds toAdd after the elementBefore
-      }else if(data[i]==elementBefore && i>=size/2){
+      }else if(data[i].equals(elementBefore) && i>=size/2){
         if (size >= data.length) grow();
         for (int j =size; j > i+1; j--){
 
